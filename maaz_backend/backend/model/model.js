@@ -1,41 +1,40 @@
-
 import mongoose from "mongoose"
 
-const assistant_schema= new mongoose.Schema({
+const assistant_schema = new mongoose.Schema({
     name: {
         type: String,
-        required: true 
+        required: true
     },
     mobile: {
         type: Number,
-       required:true
+        required: true
     },
     email: {
         type: String,
-       required:true
+        required: true
     },
     salary: {
         type: Number,
-         required:false
+        required: false
     },
     city: {
         type: String,
-       required:true
+        required: true
     },
     country: {
         type: String,
-        required:true
+        required: true
     },
     department: {
         type: String,
-        required:true
+        required: true
     },
     role: {
         type: String,
-        required:true
+        required: true
     }
-})
+});
 
-const Assistant=mongoose.model("Assistant,",assistant_schema)
+const Assistant = mongoose.model("Assistant", assistant_schema);
 
-module.exports = Assistant;
+export default Assistant

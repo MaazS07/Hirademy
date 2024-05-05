@@ -1,7 +1,6 @@
-import Assistant from "../model/model";
+import Assistant from "../model/model.js";
 
-
-exports.createAssistant = async (req, res) => {
+let createAssistant = async (req, res) => {
     try {
         const assistant = new Assistant(req.body);
         const savedAssistant = await assistant.save();
@@ -11,8 +10,8 @@ exports.createAssistant = async (req, res) => {
     }
 };
 
-// Get an assistant by ID
-exports.getAssistantbyId = async (req, res) => {
+
+let getAssistantbyId = async (req, res) => {
     try {
         const assistant = await Assistant.findById(req.params.assistant_id);
         if (!assistant) {
@@ -24,8 +23,8 @@ exports.getAssistantbyId = async (req, res) => {
     }
 };
 
-// Update an assistant
-exports.updateAssistant = async (req, res) => {
+
+let updateAssistant = async (req, res) => {
     try {
         const updatedAssistant = await Assistant.findByIdAndUpdate(req.params.assistant_id, req.body, { new: true });
         if (!updatedAssistant) {
@@ -37,8 +36,8 @@ exports.updateAssistant = async (req, res) => {
     }
 };
 
-// Delete an assistant
-exports.deleteAssistant = async (req, res) => {
+
+let deleteAssistant = async (req, res) => {
     try {
         const deletedAssistant = await Assistant.findByIdAndDelete(req.params.assistant_id);
         if (!deletedAssistant) {
@@ -55,3 +54,5 @@ function handleErrorResponse(res, error) {
     console.error("Error:", error);
     res.status(500).json({ message: "Internal server error" });
 }
+
+export { createAssistant,getAssistantbyId, updateAssistant, deleteAssistant };
