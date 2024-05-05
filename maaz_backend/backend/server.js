@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { createAssistant,getAssistantbyId, updateAssistant, deleteAssistant } from "./controller/controller.js";
+import { createAssistant,getAllAssistants, getAssistantbyId, updateAssistant, deleteAssistant } from "./controller/controller.js";
 import DB from "./db/db.js";
 
 const app = express();
@@ -15,11 +15,7 @@ app.post('/assistant', createAssistant);
 app.get('/assistant/:assistant_id', getAssistantbyId);
 app.put('/assistant/:assistant_id', updateAssistant);
 app.delete('/assistant/:assistant_id', deleteAssistant);
-
+app.get('/assistants', getAllAssistants);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
-
-
-

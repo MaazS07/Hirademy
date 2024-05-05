@@ -1,6 +1,6 @@
 import Assistant from "../model/model.js";
 
-let createAssistant = async (req, res) => {
+export const createAssistant = async (req, res) => {
     try {
         const assistant = new Assistant(req.body);
         const savedAssistant = await assistant.save();
@@ -10,8 +10,7 @@ let createAssistant = async (req, res) => {
     }
 };
 
-
-let getAssistantbyId = async (req, res) => {
+export const getAssistantbyId = async (req, res) => {
     try {
         const assistant = await Assistant.findById(req.params.assistant_id);
         if (!assistant) {
@@ -24,7 +23,17 @@ let getAssistantbyId = async (req, res) => {
 };
 
 
-let updateAssistant = async (req, res) => {
+export const getAllAssistants = async (req, res) => {
+    try {
+        const assistants = await Assistant.find();
+        res.json(assistants);
+    } catch (error) {
+        handleErrorResponse(res, error);
+    }
+};
+
+
+export const updateAssistant = async (req, res) => {
     try {
         const updatedAssistant = await Assistant.findByIdAndUpdate(req.params.assistant_id, req.body, { new: true });
         if (!updatedAssistant) {
@@ -36,8 +45,7 @@ let updateAssistant = async (req, res) => {
     }
 };
 
-
-let deleteAssistant = async (req, res) => {
+export const deleteAssistant = async (req, res) => {
     try {
         const deletedAssistant = await Assistant.findByIdAndDelete(req.params.assistant_id);
         if (!deletedAssistant) {
@@ -54,5 +62,3 @@ function handleErrorResponse(res, error) {
     console.error("Error:", error);
     res.status(500).json({ message: "Internal server error" });
 }
-
-export { createAssistant,getAssistantbyId, updateAssistant, deleteAssistant };
