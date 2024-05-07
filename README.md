@@ -29,7 +29,7 @@ This API provides endpoints to manage assistants, including creating, retrieving
 
 ### Get All Assistants
 - **Method:** GET
-- **Endpoint:** `/assistant`
+- **Endpoint:** `/assistants`
 - **Description:** Retrieves all assistant records.
 - **Response:** Returns an array of all assistant objects.
 
